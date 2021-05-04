@@ -2,8 +2,12 @@
   <footer class="footer">
     <div class="container">
       <div class="row row-buffer">
-        <div class="col-4"><img src="/img/vertexLogo.png" class="left img-responsive"></div>
-        <div class="col-8"><span class="text-muted text-muted-cus right">&copy; Vertex Pharmaceuticals Incorporated. All Rights Reserved For Internal Training Purposes Only. Do Not Distribute. Not For Commercial Use.</span></div>
+        <div class="col-4">
+          <img src="/img/vertexLogo.png" class="left img-responsive">
+        </div>
+        <div class="col-8">
+          <span class="text-muted text-muted-cus right">&copy; Vertex Pharmaceuticals Incorporated. All Rights Reserved For Internal Training Purposes Only. Do Not Distribute. Not For Commercial Use.</span>
+        </div>
       </div>
     </div>
   </footer>
