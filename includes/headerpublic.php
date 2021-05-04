@@ -13,7 +13,7 @@
   
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></link>
 
     <!-- Custom styles for this template -->
     <link href="/css/sticky-footer-navbar.css" rel="stylesheet">
