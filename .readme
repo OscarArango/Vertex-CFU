@@ -1,0 +1,121 @@
+** Public Folder old Includes before BASE PATH usage.
+====================================================
+<?php require 'includes/footer.php';?>
+<?php require 'queries/k-read-keyresource1.php';?>
+require 'includes/connection.php';
+
+** Admin Folder old Includes before BASE PATH usage.
+====================================================
+
+** Nav handling code, prior attempts.
+====================================================
+<?php
+    if (strpos($_SERVER['REQUEST_URI'], APP_BASE_PATH) >= 0) {
+        $publicnav = "showme";
+        $adminnav = "hideme";
+    }
+    else if (strpos($_SERVER['REQUEST_URI'], APP_ADMIN_PATH, *) >= 0) {
+        $publicnav = "hideme";
+        $adminnav = "showme";
+    }
+?>
+<?php
+    $public = APP_PUBLIC_PATH;
+    $admin = APP_ADMIN_PATH;
+
+    if (file_exists($public)) {
+        $publicnav = "showme";
+        $adminnav = "hideme";
+    } else if (file_exists($public)) {
+        $publicnav = "hideme";
+        $adminnav = "showme";
+    }
+?>
+<?php
+    
+    $public = APP_PUBLIC_PATH;
+    $admin = APP_ADMIN_PATH;
+
+    if(is_dir($public)) {
+        $publicnav = "showme";
+        $adminnav = "hideme";
+    }
+    else if (is_dir($admin)) {
+        $publicnav = "hideme";
+        $adminnav = "showme";
+    }
+?>
+
+$currentPath = $_SERVER['REQUEST_URI'];
+
+$public = '/';
+$admin = '/admin/asset-managment.php';
+
+if ($currentPath == $public) {
+    $publicnav = "showme";
+    $adminnav = "hideme";
+} else if ($currentPath == $admin) {
+    $publicnav = "hideme";
+    $adminnav = "showme";
+}
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<?php
+    require 'includes/connection.php';
+    $sql = "SELECT AssetTypeID, AssetType FROM tblAssetsType";
+    $result = mysqli_query($conn, $sql);
+?>
+<select name="assettype" class="custom-select mb-2 mr-sm-2 mb-sm-0">
+<option selected disabled="disabled">Select an Asset Type</option>
+<?php while($row = mysqli_fetch_array($result)):; ?>
+<option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?></option>
+<?php endwhile; ?>
+</select>
+
+<a href='update-asset.php?id=".$row['ID']."' class='tblanchor'>
+    <span class='tblspan'>".$row['AssetTitle']."</span>
+</a>
+
+
+<td>
+    <button data-toggle='modal' data-target='#myModal3' data-id='".$row['ID']."'><i class='fa fa-wrench' aria-hidden='true'></i></button>
+    <button value='".$row['ID']."'><i class='fa fa-trash' aria-hidden='true'></i></button>
+    
+</td>
+
+<td>
+    <form id='formDeleteRecord' action='queries/delete-asset-record.php' method='post'>
+        <button onclick='form_submit()' data-toggle='modal' data-target='#myModal3' data-id='".$row['ID']."'>
+            <i class='fa fa-wrench' aria-hidden='true'></i>
+        </button>
+        <button type='submit' onclick='form_deleteRecord()' value='".$row['ID']."'>
+            <i class='fa fa-trash' aria-hidden='true'></i>
+        </button>
+    </form>
+</td>
+
+
+<?php include (APP_QUERY_PATH . '/read-keyresource.php');?>
